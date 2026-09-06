@@ -1,1 +1,128 @@
 
+RT01#show run
+Building configuration...
+
+Current configuration : 1724 bytes
+!
+version 15.0
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname RT01
+!
+boot-start-marker
+boot-end-marker
+!
+!
+no aaa new-model
+!
+!
+!
+service-module wlan-ap 0 bootimage autonomous
+!
+no ipv6 cef
+ip source-route
+ip cef
+!
+!
+ip dhcp excluded-address 192.168.50.1 192.168.50.10
+!
+ip dhcp pool MY-NETWORK
+   network 192.168.50.0 255.255.255.0
+   default-router 192.168.50.1
+   dns-server 8.8.8.8
+!
+!
+no ip domain lookup
+ip domain name lab.local
+!
+multilink bundle-name authenticated
+!
+!
+!
+license udi pid CISCO1941W-A/K9 sn FTX152002FQ
+hw-module ism 0
+!
+!
+!
+!
+redundancy
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface Wlan-GigabitEthernet0/0
+ description Internal switch interface connecting to the embedded AP
+ !
+!
+interface GigabitEthernet0/0
+ description WAN to ISP
+ ip address dhcp
+ ip nat outside
+ ip virtual-reassembly
+ duplex auto
+ speed auto
+ !
+!
+interface wlan-ap0
+ description Service module interface to manage the embedded AP
+ no ip address
+ arp timeout 0
+ no mop enabled
+ no mop sysid
+ !
+!
+interface GigabitEthernet0/1
+ description LAN to Homelab
+ ip address 192.168.50.1 255.255.255.0
+ ip nat inside
+ ip virtual-reassembly
+ duplex auto
+ speed auto
+ !
+!
+interface Vlan1
+ no ip address
+ !
+!
+ip forward-protocol nd
+!
+no ip http server
+no ip http secure-server
+!
+ip nat inside source list 1 interface GigabitEthernet0/0 overload
+ip route 0.0.0.0 0.0.0.0 dhcp
+!
+access-list 1 permit 192.168.50.0 0.0.0.255
+!
+!
+!
+!
+!
+!
+control-plane
+ !
+!
+!
+line con 0
+line aux 0
+line 67
+ no activation-character
+ no exec
+ transport preferred none
+ transport input all
+ transport output pad telnet rlogin lapb-ta mop udptn v120 ssh
+line vty 0 4
+ login
+!
+scheduler allocate 20000 1000
+end
+
+RT01#
+
