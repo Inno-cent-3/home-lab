@@ -1,0 +1,27 @@
+RT01#show access-lists
+Standard IP access list 1
+    10 permit 192.168.50.0, wildcard bits 0.0.0.255 (11246 matches)
+Extended IP access list DNS-FORCE
+    10 permit udp host 192.168.50.10 host 9.9.9.9 eq domain (235 matches)
+    20 permit tcp host 192.168.50.10 host 9.9.9.9 eq domain (1801 matches)
+    30 permit udp host 192.168.50.10 host 1.1.1.1 eq domain
+    40 permit tcp host 192.168.50.10 host 1.1.1.1 eq domain
+    50 permit udp 192.168.50.0 0.0.0.255 host 192.168.50.10 eq domain
+    60 permit tcp 192.168.50.0 0.0.0.255 host 192.168.50.10 eq domain
+    70 permit udp 10.0.0.0 0.0.0.255 host 192.168.50.10 eq domain
+    80 permit tcp 10.0.0.0 0.0.0.255 host 192.168.50.10 eq domain
+    90 deny udp any any eq domain (22 matches)
+    100 deny tcp any any eq domain
+    110 permit ip any any (51170 matches)
+Extended IP access list LAN-SECURITY
+    5 permit udp any any eq bootps (4 matches)
+    6 permit udp any any eq bootpc
+    10 permit ip 192.168.50.0 0.0.0.255 any (142313 matches)
+    20 deny ip 10.0.0.0 0.255.255.255 any
+    30 deny ip 172.16.0.0 0.15.255.255 any
+    40 deny ip 192.168.0.0 0.0.255.255 any
+    50 deny ip 0.0.0.0 0.255.255.255 any (332 matches)
+    60 deny ip 100.64.0.0 0.63.255.255 any
+    70 deny ip 169.254.0.0 0.0.255.255 any (12 matches)
+    80 permit ip any any
+RT01#

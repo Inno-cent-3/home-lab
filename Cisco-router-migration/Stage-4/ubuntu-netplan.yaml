@@ -1,0 +1,19 @@
+innocent-a@pihole-lab:~$ sudo cat /etc/netplan/*.yaml
+network:
+  version: 2
+  renderer: networkd
+  ethernets:
+    ens33:
+      dhcp4: no
+      addresses:
+        - 192.168.50.10/24
+      gateway4: 192.168.50.1
+      nameservers:
+        addresses:
+          - 127.0.0.1
+network:
+  version: 2
+  ethernets:
+    ens33:
+      dhcp4: true
+innocent-a@pihole-lab:~$

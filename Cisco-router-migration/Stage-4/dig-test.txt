@@ -1,0 +1,23 @@
+innocent-a@pihole-lab:~$ dig google.com
+
+; <<>> DiG 9.18.39-0ubuntu0.24.04.7-Ubuntu <<>> google.com
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 53766
+;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 1232
+; EDE: 3 (Stale Answer)
+;; QUESTION SECTION:
+;google.com.                    IN      A
+
+;; ANSWER SECTION:
+google.com.             0       IN      A       142.250.69.78
+
+;; Query time: 2 msec
+;; SERVER: 127.0.0.1#53(127.0.0.1) (UDP)
+;; WHEN: Mon Sep 07 22:38:24 UTC 2026
+;; MSG SIZE  rcvd: 61
+
+innocent-a@pihole-lab:~$
