@@ -1,3 +1,0 @@
-Core v6.4.3
-Web v6.6
-FTL v6.7
